@@ -3,17 +3,211 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger:
-- main
+trigger: none
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: windows-latest
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+stages:
+- stage: Stage1
+  jobs:
+  - deployment: DeployWeb1
+    displayName: deploy Web App 1
+    pool:
+      vmImage: 'windows-latest'
+    environment:
+      name: 'DTS2025008-1'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: CmdLine@2
+            inputs:
+              script: echo Hello world
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'Kirt(277d5808-4dba-48ec-9a92-eaddfcc6a571)'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: '24Feb2022'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'ARM-Cert-New'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'ARM-SC-One'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'ARM-SC-Two'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'AutomaticSC-Kirt'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'Automatic-Sep12'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: "Automatic-Sep15-withKirt(new'"
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'DTS-1899536'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'DTS-1899536-Sub-scopenew'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'DTS1981479'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'DTS2030659-ARM'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'kirt-new12'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'KIRTtestSC'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'manual(Sep13)'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'manual(septnew13'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'SiharidDevOpsDevil'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+- stage: Stage2
+  jobs:
+  - deployment: DeployWeb2
+    displayName: deploy Web App 2
+    pool:
+      vmImage: 'windows-latest'
+    environment:
+      name: 'DTS2025008-2'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: CmdLine@2
+            inputs:
+              script: echo Hello world
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'Kirt(277d5808-4dba-48ec-9a92-eaddfcc6a571)'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: '24Feb2022'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'ARM-Cert-New'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'ARM-SC-One'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'ARM-SC-Two'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'AutomaticSC-Kirt'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'Automatic-Sep12'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: "Automatic-Sep15-withKirt(new'"
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'DTS-1899536'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'DTS-1899536-Sub-scopenew'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'DTS1981479'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'DTS2030659-ARM'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'kirt-new12'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'KIRTtestSC'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'manual(Sep13)'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'manual(septnew13'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
+          - task: AzurePowerShell@5
+            inputs:
+              azureSubscription: 'SiharidDevOpsDevil'
+              ScriptType: 'InlineScript'
+              azurePowerShellVersion: 'LatestVersion'
